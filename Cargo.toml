@@ -1,0 +1,13 @@
+[package]
+name = "robo1_2024_a"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+omni_control = { git = "https://github.com/nityc-d-robo/omni_control",rev = "0b7351aeacc8de9d21d064cb4a347b4081abba62" }
+motor_controller = { git = "https://github.com/nityc-d-robo/motor_controller",rev = "ef4488fb75458900dbf7fe062dbad82fe54ba03c" }
+
+safe_drive = "0.4"
+
+[package.metadata.ros]
+safe_drive_version = "0.3"
