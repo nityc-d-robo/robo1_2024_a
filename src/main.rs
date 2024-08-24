@@ -36,8 +36,8 @@ fn main() -> Result<(), DynError> {
     let mut selector = ctx.create_selector()?;
     let node = ctx.create_node("robo1_2024_a", None, Default::default())?;
 
-    let subscriber_cmd = node.create_subscriber::<msg::Twist>("cmd_vel_1", None)?;
-    let subscriber_joy = node.create_subscriber::<sensor_msgs::msg::Joy>("joy", None)?;
+    let subscriber_cmd = node.create_subscriber::<msg::Twist>("cmd_vel1", None)?;
+    let subscriber_joy = node.create_subscriber::<sensor_msgs::msg::Joy>("rjoy1", None)?;
 
 
     selector.add_subscriber(
@@ -46,7 +46,7 @@ fn main() -> Result<(), DynError> {
             let motor_power = omni_setting.move_chassis(msg.linear.x, msg.linear.y, msg.angular.z);
 
             for i in motor_power.keys() {
-                udp_communication::send_pwm_udp("8080", "192.168.3:8080", *i, motor_power[i]);
+                udp_communication::send_pwm_udp("50003", "192.168.3:60000", *i, motor_power[i]);
             }
         }),
     );
