@@ -1,9 +1,10 @@
+#[allow(unused_imports)]
 use safe_drive::{
     context::Context,
     error::DynError,
     logger::Logger,
     msg::common_interfaces::sensor_msgs,
-    // pr_info,
+    pr_info,
 };
 
 use motor_controller::udp_communication;
@@ -51,12 +52,12 @@ fn main() -> Result<(), DynError> {
         }),
     );
 
-    selector.add_subscriber(
-        subscriber_joy,
-        Box::new(move |_msg| {
-            todo!();
-        }),
-    );
+    // selector.add_subscriber(
+    //     subscriber_joy,
+    //     Box::new(move |_msg| {
+    //         todo!();
+    //     }),
+    // );
 
     loop {
         selector.wait()?;
