@@ -6,6 +6,8 @@ edition = "2021"
 [dependencies]
 omni_control = { git = "https://github.com/nityc-d-robo/omni_control",rev = "0b7351aeacc8de9d21d064cb4a347b4081abba62" }
 motor_controller = { git = "https://github.com/nityc-d-robo/motor_controller",rev = "ce467588a86a9971a9c5e9354e373206d4cbd4ad" }
+controllers = {git = "https://github.com/nityc-d-robo/controllers",rev = "83c2bfdd368250073e4dbaf3a4ce078a9dac3859"}
+
 
 safe_drive = "0.4"
 
