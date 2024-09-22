@@ -46,7 +46,6 @@ fn main() -> Result<(), DynError> {
         Box::new(move |msg| {
             omni_setting.max_pawer_output = *required_max_pawer_output_cmd.borrow();
             let motor_power = omni_setting.move_chassis(-msg.linear.x, msg.linear.y, msg.angular.z);
-            pr_info!(_logger, "{:?}", &motor_power);
             for i in motor_power.keys() {
                 udp_communication::send_pwm_udp(OWN_PORT, BROADCAST_ADDR, *i, motor_power[i]);
             }
@@ -77,10 +76,12 @@ fn main() -> Result<(), DynError> {
             }
 
             if joy_c.pressed_circle() && *d4s.borrow() == 0 {
-                udp_communication::send_pwm_udp("50010", "192.168.1.11", 0, -1.);
+                udp_communication::send_pwm_udp("50010", "192.168.1.11:8080", 0, -1.);
                 *d4s.borrow_mut() = 1;
-            } else {
-                *d4s.borrow_mut() = 1;
+            }
+
+            if !joy_c.pressed_circle() && *d4s.borrow() == 1 {
+                *d4s.borrow_mut() = 0;
             }
         }),
     );
